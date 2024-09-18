@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, View, Text, Image, StyleSheet, TouchableOpacity, Linking } from 'react-native';
+import { FlatList, View, Text, Image, StyleSheet, TouchableOpacity, Linking, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const Country = [
@@ -38,24 +38,36 @@ const CategoriesScreen = () => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <ScrollView style={styles.container}>
       <TouchableOpacity onPress={openPlayStore} style={styles.bannerContainer}>
         <Image
           source={{ uri: 'https://cdn2.fptshop.com.vn/unsafe/Uploads/images/tin-tuc/178765/Originals/befood-1.jpg' }} 
           style={styles.bannerImage}
         />
       </TouchableOpacity>
+      
+      <View style={styles.promoContainer}>
+        <Text style={styles.promoText}>
+          Nhập mã "KIETDEPTRAI" - Giảm 2% đơn hàng từ 20K**
+        </Text>
+      </View>
+
       <FlatList
         data={Country}
         renderItem={renderCategoryItem}
         numColumns={2}
         keyExtractor={(item) => item.id}
+        scrollEnabled={false}
+        nestedScrollEnabled={true}
       />
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   bannerContainer: {
     alignItems: 'center',
     marginVertical: 10,
@@ -65,6 +77,21 @@ const styles = StyleSheet.create({
     height: 180,
     resizeMode: 'cover',
     borderRadius: 15,
+  },
+  promoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#FFE4B5',
+    padding: 10,
+    marginHorizontal: 12,
+    borderRadius: 8,
+  },
+  promoText: {
+    flex: 1,
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#8B4513',
   },
   gridItem: {
     flex: 1,
