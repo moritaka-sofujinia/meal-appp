@@ -132,14 +132,14 @@ const MealDetailScreen = () => {
       if (!isMealFavorite) {
         addFavorite(meal);
         console.log('Meal added to favorites:', meal);
-        alert('Meal added to favorites');
+        alert('Món ăn được thêm vào mục yêu thích');
       } else {
         removeFavorite(meal.id);
         console.log('Meal removed from favorites:', meal);
-        alert('Meal removed from favorites');
+        alert('Món ăn được xóa khỏi mục yêu thích');
       }
       setIsMealFavorite((prevState) => !prevState);
-      navigation.navigate('Favorites');
+      //navigation.navigate('Favorites');
     }
   };
 
